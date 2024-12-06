@@ -34,12 +34,27 @@
     }
 
     img {
-        width: 100%;
-        height: auto;
-        object-fit: contain;
-        border-radius: 5px; /* 小さめに調整 */
-        margin-bottom: 15px;
+    width: 100%;
+    height: auto; /* アスペクト比を保持 */
+    object-fit: contain;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    max-width: 700px; /* 最大幅を設定 */
+}
+
+/* メディアクエリで画像サイズを調整 */
+@media (min-width: 1024px) {
+    img {
+        max-width: 600px; /* PC画面では画像の最大幅を縮小 */
     }
+}
+
+@media (min-width: 1400px) {
+    img {
+        max-width: 500px; /* さらに大きい画面では小さく */
+    }
+}
+
 
     .highlight {
         color: #007bff; /* コーポレートカラーに合わせる */
