@@ -30,13 +30,14 @@
         margin-bottom: 15px;
     }
     img {
-        width: 100%;
-        height: auto;
-        max-height: 300px;
-        object-fit: cover;
-        border-radius: 10px;
-        margin-bottom: 20px;
-    }
+    width: 100%;
+    height: auto; /* アスペクト比を保持 */
+    max-height: none; /* 高さ制限を解除 */
+    object-fit: contain; /* 全体が収まるようにする */
+    border-radius: 10px; /* デザインを保持 */
+    margin-bottom: 20px;
+}
+
     .highlight {
         color: blue;
         text-decoration: underline;
