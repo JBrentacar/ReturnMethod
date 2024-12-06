@@ -4,85 +4,100 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>JBレンタカー石巻店 - 営業時間外返却手順</title>
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        max-width: 700px;
-        margin: 0 auto;
-        padding: 20px;
-        background-color: #f7f7f7;
-        line-height: 1.6;
-    }
-    .logo {
-        width: 120px;
-        margin: 0 auto;
-        display: block;
-        padding-bottom: 20px;
-    }
-    h1 {
-        text-align: center;
-        color: #333;
-        font-size: 1.8em;
-        margin-bottom: 20px;
-    }
-    p {
-        font-size: 1.1em;
-        margin-bottom: 15px;
-    }
-    img {
-    width: 100%;
-    height: auto; /* アスペクト比を保持 */
-    max-height: none; /* 高さ制限を解除 */
-    object-fit: contain; /* 全体が収まるようにする */
-    border-radius: 10px; /* デザインを保持 */
-    margin-bottom: 20px;
+body {
+    font-family: 'Noto Sans JP', sans-serif; /* Google Fontsの"シンプル"デザインに合わせる */
+    max-width: 100%; /* ページ全体に広がるよう変更 */
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff; /* サイトのベースカラー */
+    line-height: 1.6;
 }
 
-    .highlight {
-        color: blue;
-        text-decoration: underline;
-        cursor: pointer;
-    }
-    .address {
-        font-size: 1.1em;
-        margin-top: 20px;
-        text-align: center;
-    }
-    .map-link {
-        color: #007bff;
-        text-decoration: underline;
-    }
-    .footer-image {
-        width: 100%;
-        height: auto;
-        max-height: 400px;
-        object-fit: cover;
-        border-radius: 10px;
-        border: 1px solid #ccc;
-        margin-top: 30px;
-    }
-    .faq {
-        margin-top: 30px;
-    }
-    .faq h2 {
-        font-size: 1.5em;
-        color: #333;
-        margin-bottom: 10px;
-    }
-    .faq-item {
-        margin-bottom: 15px;
-    }
-    .note {
-        margin-top: 20px;
-        padding: 15px;
-        background-color: #f0f0f0;
-        border-radius: 10px;
-        border: 1px solid #ccc;
-    }
-    .note p {
-        margin: 5px 0;
-    }
-</style>
+.logo {
+    width: 150px; /* サイズを若干大きく */
+    margin: 20px auto;
+    display: block;
+}
+
+h1 {
+    text-align: center;
+    color: #222; /* 少し濃い色に変更 */
+    font-size: 2em; /* 見出しを際立たせる */
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 1em; /* 全体の統一感を持たせる */
+    color: #555; /* 明るいグレー */
+    margin: 0 15px 15px; /* 横幅を余白付きで統一 */
+}
+
+img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    border-radius: 5px; /* 小さめに調整 */
+    margin-bottom: 15px;
+}
+
+.highlight {
+    color: #007bff; /* コーポレートカラーに合わせる */
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.address {
+    font-size: 0.9em; /* 少し控えめなサイズ */
+    margin-top: 20px;
+    color: #444; /* テキストカラーを暗めに */
+    text-align: center;
+}
+
+.map-link {
+    color: #007bff;
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+.footer-image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 5px;
+    border: 1px solid #ddd; /* 明るいグレー */
+    margin-top: 20px;
+}
+
+.faq {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #f8f9fa; /* ソフトな背景色 */
+    border-radius: 10px;
+}
+
+.faq h2 {
+    font-size: 1.5em;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.faq-item {
+    margin-bottom: 10px;
+}
+
+.note {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #fefefe;
+    border-radius: 8px;
+    border: 1px solid #eee;
+}
+
+.note p {
+    margin: 5px 0;
+    color: #666;
+}
+
 <script>
     function showOilInfo() {
         alert("オイル交換が必要な場合: 3ケ月以上ご利用、または 3000km 以上走行された場合です。");
