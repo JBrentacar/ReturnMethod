@@ -156,6 +156,18 @@
             height: auto;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 1rem;
+        }
+
+        .step-image-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .step-image-full {
+            grid-column: span 2;
         }
 
         .step-note {
@@ -166,6 +178,14 @@
             border-radius: 4px;
             color: var(--text-dark);
             font-size: 0.9rem;
+        }
+
+        .image-caption {
+            display: block;
+            margin-top: 0.5rem;
+            font-size: 0.85rem;
+            color: var(--text-light);
+            text-align: center;
         }
 
         /* 返却先情報 */
@@ -322,6 +342,14 @@
             color: var(--text-light);
         }
 
+        .faq-image {
+            max-width: 100%;
+            border-radius: 8px;
+            margin-top: 1rem;
+            margin-left: 1.6rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
         /* 注意事項セクション */
         .notice-card {
             background-color: var(--white);
@@ -446,6 +474,14 @@
             .step-title {
                 font-size: 1.1rem;
             }
+            
+            .step-image-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .step-image-full {
+                grid-column: span 1;
+            }
         }
     </style>
 </head>
@@ -453,7 +489,7 @@
     <!-- ヘッダー -->
     <header class="header">
         <div class="logo-container">
-            <img src="logo.png" alt="JBレンタカー石巻店ロゴ" class="logo">
+            <img src="/api/placeholder/140/60" alt="JBレンタカー石巻店ロゴ" class="logo">
         </div>
         <h1>JBレンタカー石巻店</h1>
         <div class="header-subtitle">営業時間外返却手順</div>
@@ -472,7 +508,7 @@
                     ガソリン満タン・<span class="highlight" onclick="showOilInfo()">オイル交換（該当する場合のみ）</span>をお願いします。
                 </p>
                 <div class="step-image-container">
-                    <img src="gas.png" alt="ガソリン満タンとオイル交換の写真" class="step-image">
+                    <img src="/api/placeholder/600/320" alt="ガソリン満タンとオイル交換の写真" class="step-image">
                 </div>
             </div>
         </div>
@@ -487,8 +523,23 @@
                 <p class="step-description">
                     敷地内駐車場 №5, 7, 9 のいずれか指定された位置に駐車してください。
                 </p>
-                <div class="step-image-container">
-                    <img src="PARK.png" alt="駐車場の写真" class="step-image">
+                <div class="step-image-grid">
+                    <div>
+                        <img src="/api/placeholder/380/240" alt="建物外観" class="step-image">
+                        <span class="image-caption">建物外観（オレンジ斜線部分が当社駐車スペース）</span>
+                    </div>
+                    <div>
+                        <img src="/api/placeholder/380/240" alt="敷地内への案内矢印" class="step-image">
+                        <span class="image-caption">矢印に沿って敷地内へお進みください</span>
+                    </div>
+                    <div class="step-image-full">
+                        <img src="/api/placeholder/800/450" alt="駐車スペース番号5・7・9" class="step-image">
+                        <span class="image-caption">指定駐車スペース（№5・7・9）</span>
+                    </div>
+                    <div class="step-image-full">
+                        <img src="/api/placeholder/800/450" alt="駐車スペース番号5・7・9の別角度" class="step-image">
+                        <span class="image-caption">指定駐車スペース（№5・7・9）別角度</span>
+                    </div>
                 </div>
                 <div class="step-note">
                     <i class="fas fa-exclamation-triangle" style="color: var(--accent-orange); margin-right: 8px;"></i>
@@ -508,7 +559,7 @@
                     建物内 1 階 JBレンタカー専用ポストに鍵を投函してください。
                 </p>
                 <div class="step-image-container">
-                    <img src="KEY.png" alt="専用ポストの写真" class="step-image">
+                    <img src="/api/placeholder/600/320" alt="専用ポストの写真" class="step-image">
                 </div>
             </div>
         </div>
@@ -532,7 +583,7 @@
                 </a>
                 <div class="building-photo-container">
                     <h3 style="margin-bottom: 1rem; color: var(--text-light); font-size: 1rem;">建物外観</h3>
-                    <img src="building.png" alt="建物外観写真" class="building-photo">
+                    <img src="/api/placeholder/600/320" alt="建物外観写真" class="building-photo">
                 </div>
             </div>
         </div>
@@ -572,6 +623,16 @@
                     <div class="faq-answer">
                         翌営業日にメーターを確認し、お振り込みにてご案内いたします。
                     </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <i class="fas fa-question question-icon"></i>
+                        指定駐車番号に既に車が停められていた場合はどうすればよいですか？
+                    </div>
+                    <div class="faq-answer">
+                        お手数をおかけしますが、下記の画像のように当社駐車スペースに横付けするように駐車してください。その際、他のお客様の出入りの妨げにならないようご配慮ください。
+                    </div>
+                    <img src="/api/placeholder/600/320" alt="駐車場の代替駐車方法" class="faq-image">
                 </div>
             </div>
         </div>
