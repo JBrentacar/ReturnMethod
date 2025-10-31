@@ -443,6 +443,130 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
+        /* ウェルカムポップアップ */
+        .welcome-popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            animation: fadeInOverlay 0.3s ease-out;
+            backdrop-filter: blur(3px);
+        }
+
+        .welcome-popup {
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            border-radius: 20px;
+            padding: 2.5rem;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            position: relative;
+            animation: popupSlideIn 0.4s ease-out;
+            border: 3px solid var(--primary);
+        }
+
+        .popup-icon {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .popup-icon i {
+            font-size: 4rem;
+            color: var(--primary);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .popup-title {
+            text-align: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        .popup-highlight {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 104, 233, 0.1);
+            animation: bounce 1s ease-in-out infinite;
+        }
+
+        .popup-description {
+            text-align: center;
+            color: var(--text-light);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .popup-button {
+            display: block;
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: var(--white);
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 6px 20px rgba(0, 104, 233, 0.3);
+        }
+
+        .popup-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 104, 233, 0.4);
+        }
+
+        .popup-button:active {
+            transform: translateY(0);
+        }
+
+        @keyframes fadeInOverlay {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes popupSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-5px);
+            }
+        }
+
         /* レスポンシブ対応 */
         @media (max-width: 767px) {
             .header {
@@ -482,10 +606,50 @@
             .step-image-full {
                 grid-column: span 1;
             }
+
+            .welcome-popup {
+                padding: 2rem 1.5rem;
+            }
+
+            .popup-title {
+                font-size: 1.5rem;
+            }
+
+            .popup-highlight {
+                font-size: 1.6rem;
+            }
+
+            .popup-description {
+                font-size: 1rem;
+            }
+
+            .popup-icon i {
+                font-size: 3rem;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- ウェルカムポップアップ -->
+    <div id="welcomePopup" class="welcome-popup-overlay">
+        <div class="welcome-popup">
+            <div class="popup-icon">
+                <i class="fas fa-clock"></i>
+            </div>
+            <h2 class="popup-title">JBレンタカー石巻店の<br>返却方法をご案内</h2>
+            <div class="popup-highlight">
+                <i class="fas fa-check-circle" style="margin-right: 8px;"></i>24時間いつでもOK!
+            </div>
+            <p class="popup-description">
+                営業時間を気にせず、お好きな時間に返却できます。<br>
+                簡単3ステップで返却完了！
+            </p>
+            <button class="popup-button" onclick="closeWelcomePopup()">
+                <i class="fas fa-arrow-down" style="margin-right: 8px;"></i>返却手順を確認する
+            </button>
+        </div>
+    </div>
+
     <!-- ヘッダー -->
     <header class="header">
         <h1>JBレンタカー石巻店</h1>
@@ -704,9 +868,34 @@
     </footer>
 
     <script>
+        // ウェルカムポップアップを閉じる
+        function closeWelcomePopup() {
+            const popup = document.getElementById('welcomePopup');
+            popup.style.animation = 'fadeOut 0.3s ease-out';
+            setTimeout(() => {
+                popup.style.display = 'none';
+            }, 300);
+        }
+
+        // オイル交換情報を表示
         function showOilInfo() {
             alert("オイル交換が必要な場合: 3ケ月以上ご利用、または 3000km 以上走行された場合です。");
         }
+
+        // ページ読み込み時にポップアップを表示
+        window.addEventListener('load', () => {
+            document.getElementById('welcomePopup').style.display = 'flex';
+        });
+
+        // fadeOutアニメーションを追加
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeOut {
+                from { opacity: 1; }
+                to { opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
     </script>
 </body>
 </html>
