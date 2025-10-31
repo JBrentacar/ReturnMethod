@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JBレンタカー石巻店 - 返却手順</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        /* 基本設定 */
+        :root {
+            --primary: #0068e9;
+            --primary-dark: #0051b5;
+            --secondary: #f8f9fa;
+            --accent-green: #28a745;
+            --accent-blue: #17a2b8;
+            --accent-orange: #fd7e14;
+            --accent-red: #dc3545;
+            --text-dark: #333;
+            --text-light: #6c757d;
+            --white: #fff;
+            --gray-100: #f8f9fa;
+            --gray-200: #e9ecef;
+            --gray-300: #dee2e6;
+            --gray-400: #ced4da;
+            --border-radius: 12px;
+            --box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        /* リセットと全体設定 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
+            background-color: var(--gray-100);
+            color: var(--text-dark);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* ヘッダー */
+        .header {
+            background-color: var(--primary);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem 1rem;
+            position: relative;
+            background-image: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            box-shadow: var(--box-shadow);
+        }
+
+        .logo-container {
+            margin-bottom: 1rem;
+        }
+
+        .logo {
+            max-width: 140px;
+            height: auto;
+            transition: var(--transition);
+        }
+
+        .header h1 {
+            font-size: 1.6rem;
+            margin: 0;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-top: 0.5rem;
+            font-weight: 500;
+        }
+
+        /* メインコンテンツ */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        /* ステップカード */
+        .step-card {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            margin-bottom: 1.5rem;
+            box-shadow: var(--box-shadow);
+            overflow: hidden;
+            transition: var(--transition);
+            animation: fadeIn 0.5s ease-out forwards;
+            opacity: 0;
+        }
+
+        .step-card:nth-child(1) { animation-delay: 0.1s; }
+        .step-card:nth-child(2) { animation-delay: 0.2s; }
+        .step-card:nth-child(3) { animation-delay: 0.3s; }
+        .step-card:nth-child(4) { animation-delay: 0.4s; }
+
+        .step-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .step-header {
+            padding: 1.25rem 1.5rem;
+            background-color: var(--white);
+            border-bottom: 1px solid var(--gray-200);
+            display: flex;
+            align-items: center;
+        }
+
+        .step-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background-color: var(--primary);
+            color: var(--white);
+            border-radius: 50%;
+            font-weight: 700;
+            margin-right: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .step-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            flex: 1;
+        }
+
+        .step-body {
+            padding: 1.5rem;
+        }
+
+        .step-description {
+            margin-bottom: 1.25rem;
+            color: var(--text-light);
+            font-size: 1rem;
+        }
+
+        .step-image-container {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .step-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 1rem;
+        }
+
+        .step-image-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .step-image-full {
+            grid-column: span 2;
+        }
+
+        .step-note {
+            margin-top: 1rem;
+            padding: 0.8rem 1rem;
+            background-color: rgba(253, 126, 20, 0.1);
+            border-left: 4px solid var(--accent-orange);
+            border-radius: 4px;
+            color: var(--text-dark);
+            font-size: 0.9rem;
+        }
+
+        .image-caption {
+            display: block;
+            margin-top: 0.5rem;
+            font-size: 0.85rem;
+            color: var(--text-light);
+            text-align: center;
+        }
+
+        /* 返却先情報 */
+        .location-card {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            margin-bottom: 1.5rem;
+            box-shadow: var(--box-shadow);
+            overflow: hidden;
+            transition: var(--transition);
+            animation: fadeIn 0.5s ease-out forwards;
+            animation-delay: 0.5s;
+            opacity: 0;
+        }
+
+        .location-header {
+            padding: 1.25rem 1.5rem;
+            background-color: var(--white);
+            border-bottom: 1px solid var(--gray-200);
+            display: flex;
+            align-items: center;
+        }
+
+        .location-icon {
+            margin-right: 1rem;
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        .location-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .location-body {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .location-address {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+            color: var(--text-dark);
+        }
+
+        .location-note {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        .map-link {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.6rem 1.2rem;
+            background-color: var(--primary);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: var(--transition);
+            margin-top: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .map-link:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .map-link-icon {
+            margin-right: 0.5rem;
+        }
+
+        .building-photo-container {
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+
+        .building-photo {
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* FAQ セクション */
+        .faq-card {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            margin-bottom: 1.5rem;
+            box-shadow: var(--box-shadow);
+            overflow: hidden;
+            transition: var(--transition);
+            animation: fadeIn 0.5s ease-out forwards;
+            animation-delay: 0.6s;
+            opacity: 0;
+        }
+
+        .faq-header {
+            padding: 1.25rem 1.5rem;
+            background-color: var(--white);
+            border-bottom: 1px solid var(--gray-200);
+            display: flex;
+            align-items: center;
+        }
+
+        .faq-icon {
+            margin-right: 1rem;
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        .faq-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .faq-body {
+            padding: 1.5rem;
+        }
+
+        .faq-item {
+            margin-bottom: 1.25rem;
+            padding-bottom: 1.25rem;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .faq-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .faq-question {
+            display: flex;
+            align-items: center;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .question-icon {
+            color: var(--primary);
+            margin-right: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .faq-answer {
+            margin-left: 1.6rem;
+            color: var(--text-light);
+        }
+
+        .faq-image {
+            max-width: 100%;
+            border-radius: 8px;
+            margin-top: 1rem;
+            margin-left: 1.6rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 注意事項セクション */
+        .notice-card {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            margin-bottom: 1.5rem;
+            box-shadow: var(--box-shadow);
+            overflow: hidden;
+            transition: var(--transition);
+            animation: fadeIn 0.5s ease-out forwards;
+            animation-delay: 0.7s;
+            opacity: 0;
+        }
+
+        .notice-header {
+            padding: 1.25rem 1.5rem;
+            background-color: var(--white);
+            border-bottom: 1px solid var(--gray-200);
+            display: flex;
+            align-items: center;
+        }
+
+        .notice-icon {
+            margin-right: 1rem;
+            font-size: 1.5rem;
+            color: var(--accent-red);
+        }
+
+        .notice-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .notice-body {
+            padding: 1.5rem;
+        }
+
+        .notice-item {
+            display: flex;
+            margin-bottom: 1rem;
+        }
+
+        .notice-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .notice-item-icon {
+            color: var(--accent-red);
+            margin-right: 0.75rem;
+            margin-top: 0.2rem;
+            flex-shrink: 0;
+        }
+
+        .notice-item-text {
+            color: var(--text-dark);
+            font-size: 0.95rem;
+        }
+
+        /* ハイライト */
+        .highlight {
+            color: var(--primary);
+            text-decoration: underline;
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .highlight:hover {
+            color: var(--primary-dark);
+        }
+
+        /* フッター */
+        .footer {
+            text-align: center;
+            padding: 1.5rem 1rem;
+            background-color: var(--primary);
+            color: var(--white);
+            font-size: 0.9rem;
+            margin-top: 2rem;
+            background-image: linear-gradient(135deg, var(--primary), var(--primary-dark));
+        }
+
+        .footer-text {
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        /* アニメーション */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* レスポンシブ対応 */
+        @media (max-width: 767px) {
+            .header {
+                padding: 1.5rem 1rem;
+            }
+
+            .header h1 {
+                font-size: 1.4rem;
+            }
+
+            .header-subtitle {
+                font-size: 1rem;
+            }
+
+            .step-header {
+                padding: 1rem;
+            }
+
+            .step-body {
+                padding: 1.25rem;
+            }
+
+            .step-number {
+                width: 32px;
+                height: 32px;
+                font-size: 1rem;
+            }
+
+            .step-title {
+                font-size: 1.1rem;
+            }
+            
+            .step-image-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .step-image-full {
+                grid-column: span 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ヘッダー -->
+    <header class="header">
+        <h1>JBレンタカー石巻店</h1>
+        <div class="header-subtitle">営業時間外返却手順</div>
+    </header>
+
+    <!-- メインコンテンツ -->
+    <main class="container">
+        <!-- ステップ1: ガソリン満タン・オイル交換 -->
+        <div class="step-card">
+            <div class="step-header">
+                <div class="step-number">1</div>
+                <div class="step-title">ガソリン満タン・オイル交換</div>
+            </div>
+            <div class="step-body">
+                <p class="step-description">
+                    ガソリン満タン・<span class="highlight" onclick="showOilInfo()">オイル交換（該当する場合のみ）</span>をお願いします。
+                </p>
+                <div class="step-image-container">
+                    <img src="gas.png" alt="ガソリン満タンとオイル交換の写真" class="step-image">
+                </div>
+                <div style="background-color: #f5f5f5; border-radius: 8px; padding: 15px; margin-top: 15px;">
+                    <h4 style="color: var(--primary); margin-bottom: 10px; font-size: 1rem;">
+                        <i class="fas fa-gas-pump" style="margin-right: 8px;"></i>近隣ガソリンスタンドのご案内
+                    </h4>
+                    <div style="margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px dashed var(--gray-300);">
+                        <p style="font-weight: 600; margin-bottom: 5px;">apollostation 石巻バイパス東SS</p>
+                        <p style="font-size: 0.9rem; color: var(--text-light); margin-bottom: 5px;">〒986-0815 宮城県石巻市中里１丁目３−８</p>
+                        <p style="font-size: 0.9rem;"><i class="far fa-clock" style="margin-right: 5px;"></i>24時間営業</p>
+                        <a href="https://maps.app.goo.gl/Bi27pmAtbA2Zhq6o6" class="map-link" target="_blank" style="margin-top: 8px; padding: 4px 10px; font-size: 0.8rem;">
+                            <i class="fas fa-map-marked-alt map-link-icon"></i>マップを開く
+                        </a>
+                    </div>
+                    <div>
+                        <p style="font-weight: 600; margin-bottom: 5px;">ENEOS Dr.Driveセルフ石巻中里店</p>
+                        <p style="font-size: 0.9rem; color: var(--text-light); margin-bottom: 5px;">〒986-0814 宮城県石巻市南中里１丁目９−２２</p>
+                        <p style="font-size: 0.9rem;"><i class="far fa-clock" style="margin-right: 5px;"></i>24時間営業</p>
+                        <a href="https://maps.app.goo.gl/QsJGWvvRfSBX2aqXA" class="map-link" target="_blank" style="margin-top: 8px; padding: 4px 10px; font-size: 0.8rem;">
+                            <i class="fas fa-map-marked-alt map-link-icon"></i>マップを開く
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ステップ2: 駐車 -->
+        <div class="step-card">
+            <div class="step-header">
+                <div class="step-number">2</div>
+                <div class="step-title">指定駐車場に駐車</div>
+            </div>
+            <div class="step-body">
+                <p class="step-description">
+                    敷地内駐車場 <span style="font-weight: 700; color: var(--primary); font-size: 1.1em; background-color: #e9f5ff; padding: 2px 6px; border-radius: 4px;">№5, 7, 9 のいずれか指定</span>された位置に駐車してください。
+                </p>
+                <div class="step-image-grid">
+                    <div>
+                        <img src="building2.png" alt="建物外観" class="step-image">
+                        <span class="image-caption">建物外観（オレンジ斜線部分が当社駐車スペース）</span>
+                    </div>
+                    <div>
+                        <img src="howtoparking.png" alt="敷地内への案内矢印" class="step-image">
+                        <span class="image-caption">矢印に沿って敷地内へお進みください</span>
+                    </div>
+                    <div class="step-image-full">
+                        <img src="parkingspace.png" alt="駐車スペース番号5・7・9" class="step-image">
+                        <span class="image-caption">指定駐車スペース（№5・7・9）</span>
+                    </div>
+                    <div class="step-image-full">
+                        <img src="parkingspace2.png" alt="駐車スペース番号5・7・9の別角度" class="step-image">
+                        <span class="image-caption">指定駐車スペース（№5・7・9）別角度</span>
+                    </div>
+                </div>
+                <div class="step-note">
+                    <i class="fas fa-exclamation-triangle" style="color: var(--accent-orange); margin-right: 8px;"></i>
+                    他の駐車場には絶対に駐車しないでください。
+                </div>
+            </div>
+        </div>
+
+        <!-- ステップ3: 鍵の投函 -->
+        <div class="step-card">
+            <div class="step-header">
+                <div class="step-number">3</div>
+                <div class="step-title">鍵の投函</div>
+            </div>
+            <div class="step-body">
+                <p class="step-description">
+                    建物内 1 階 JBレンタカー専用ポストに鍵を投函してください。
+                </p>
+                <div class="step-image-container">
+                    <img src="KEY.png" alt="専用ポストの写真" class="step-image">
+                </div>
+            </div>
+        </div>
+
+        <!-- 返却先情報 -->
+        <div class="location-card">
+            <div class="location-header">
+                <div class="location-icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <div class="location-title">返却先住所</div>
+            </div>
+            <div class="location-body">
+                <div class="location-address">
+                    〒986-0814<br>
+                    宮城県石巻市南中里 2-9-27 タイムヒルズ
+                </div>
+                <div class="location-note">センチュリー21と同じ建物です。</div>
+                <a href="https://maps.app.goo.gl/GA3wW2kHWUhcdNnq9" class="map-link" target="_blank">
+                    <i class="fas fa-map-marked-alt map-link-icon"></i>Google マップで確認
+                </a>
+                <div class="building-photo-container">
+                    <h3 style="margin-bottom: 1rem; color: var(--text-light); font-size: 1rem;">建物外観</h3>
+                    <img src="building.png" alt="建物外観写真" class="building-photo">
+                </div>
+            </div>
+        </div>
+
+        <!-- よくあるご質問 (FAQ) -->
+        <div class="faq-card">
+            <div class="faq-header">
+                <div class="faq-icon">
+                    <i class="fas fa-question-circle"></i>
+                </div>
+                <div class="faq-title">よくあるご質問</div>
+            </div>
+            <div class="faq-body">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <i class="fas fa-question question-icon"></i>
+                        何時までに返却すればよいですか？
+                    </div>
+                    <div class="faq-answer">
+                        営業時間を問わず、ご契約満了日の 23:59 までに返却をお願いいたします。
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <i class="fas fa-question question-icon"></i>
+                        給油レシートは確認は不要ですか？
+                    </div>
+                    <div class="faq-answer">
+                        はい、ご返却確認後、メーターを確認させていただきます。
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <i class="fas fa-question question-icon"></i>
+                        超過距離分の精算方法は？
+                    </div>
+                    <div class="faq-answer">
+                       ご返却確認後にメーターを確認し、お振り込みにてご案内いたします。
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <i class="fas fa-question question-icon"></i>
+                        指定駐車番号に既に車が停められていた場合はどうすればよいですか？
+                    </div>
+                    <div class="faq-answer">
+                        お手数をおかけしますが、下記の画像のように当社駐車スペースに横付けするように駐車してください。その際、他のお客様の出入りの妨げにならないようご配慮ください。
+                    </div>
+                    <img src="full.png" alt="駐車場の代替駐車方法" class="faq-image">
+                </div>
+            </div>
+        </div>
+
+        <!-- 注意事項 -->
+        <div class="notice-card">
+            <div class="notice-header">
+                <div class="notice-icon">
+                    <i class="fas fa-exclamation-circle"></i>
+                </div>
+                <div class="notice-title">ご注意事項</div>
+            </div>
+            <div class="notice-body">
+                <div class="notice-item">
+                    <div class="notice-item-icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <div class="notice-item-text">
+                        ご契約満了日以前のご返却による返金はできませんので、ご了承ください。
+                    </div>
+                </div>
+                <div class="notice-item">
+                    <div class="notice-item-icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <div class="notice-item-text">
+                        お忘れ物にはご注意ください。特にグローブボックス内や ETC カードなどにご注意ください。
+                    </div>
+                </div>
+                <div class="notice-item">
+                    <div class="notice-item-icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <div class="notice-item-text">
+                        貸出時の走行距離が不明な場合は、事前にご連絡ください。
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- フッター -->
+    <footer class="footer">
+        <div class="logo-container" style="margin-bottom: 1rem;">
+            <img src="logo.png" alt="JBレンタカー石巻店ロゴ" class="logo" style="max-width: 120px;">
+        </div>
+        <div class="footer-text">
+            &copy; 2025 JBレンタカー石巻店<br>
+            安全運転でお出かけください
+        </div>
+    </footer>
+
+    <script>
+        function showOilInfo() {
+            alert("オイル交換が必要な場合: 3ケ月以上ご利用、または 3000km 以上走行された場合です。");
+        }
+    </script>
+</body>
+</html>
