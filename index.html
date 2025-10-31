@@ -421,6 +421,203 @@
             color: var(--primary-dark);
         }
 
+        /* 車両回収サービス選択 */
+        .service-selection-card {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            margin-bottom: 1.5rem;
+            box-shadow: var(--box-shadow);
+            overflow: hidden;
+            transition: var(--transition);
+            animation: fadeIn 0.5s ease-out forwards;
+            animation-delay: 0.45s;
+            opacity: 0;
+        }
+
+        .service-selection-header {
+            padding: 1.25rem 1.5rem;
+            background-color: var(--white);
+            border-bottom: 1px solid var(--gray-200);
+            display: flex;
+            align-items: center;
+        }
+
+        .service-selection-icon {
+            margin-right: 1rem;
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        .service-selection-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .service-selection-body {
+            padding: 1.5rem;
+        }
+
+        .service-options {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-option {
+            flex: 1;
+            padding: 1.2rem;
+            border: 2px solid var(--gray-300);
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+            background-color: var(--white);
+        }
+
+        .service-option:hover {
+            border-color: var(--primary);
+            box-shadow: 0 4px 8px rgba(0, 104, 233, 0.1);
+        }
+
+        .service-option.selected {
+            border-color: var(--primary);
+            background-color: rgba(0, 104, 233, 0.05);
+            box-shadow: 0 4px 12px rgba(0, 104, 233, 0.2);
+        }
+
+        .service-option-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-light);
+            transition: var(--transition);
+        }
+
+        .service-option.selected .service-option-icon {
+            color: var(--primary);
+        }
+
+        .service-option-label {
+            font-weight: 600;
+            font-size: 1.05rem;
+            color: var(--text-dark);
+        }
+
+        .postal-code-section {
+            display: none;
+            margin-top: 1.5rem;
+            padding: 1.5rem;
+            background-color: var(--gray-100);
+            border-radius: var(--border-radius);
+            animation: slideDown 0.3s ease-out;
+        }
+
+        .postal-code-section.active {
+            display: block;
+        }
+
+        .postal-code-label {
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .postal-code-input-container {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .postal-code-input {
+            flex: 1;
+            padding: 0.8rem 1rem;
+            border: 2px solid var(--gray-300);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: var(--transition);
+            font-family: 'Courier New', monospace;
+            letter-spacing: 0.1em;
+        }
+
+        .postal-code-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(0, 104, 233, 0.1);
+        }
+
+        .postal-code-result {
+            padding: 1rem;
+            background-color: var(--white);
+            border-radius: 8px;
+            border-left: 4px solid var(--primary);
+            margin-bottom: 1rem;
+            display: none;
+        }
+
+        .postal-code-result.active {
+            display: block;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .postal-code-result-text {
+            font-size: 1.05rem;
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        .service-details {
+            margin-top: 1.5rem;
+            padding: 1.2rem;
+            background-color: rgba(0, 104, 233, 0.05);
+            border-radius: 8px;
+            border: 1px solid rgba(0, 104, 233, 0.2);
+        }
+
+        .service-details-title {
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .service-details-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .service-details-list li {
+            padding: 0.5rem 0;
+            color: var(--text-dark);
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+
+        .service-details-list li i {
+            color: var(--primary);
+            margin-top: 0.2rem;
+            flex-shrink: 0;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                max-height: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                max-height: 500px;
+                transform: translateY(0);
+            }
+        }
+
         /* フッター */
         .footer {
             text-align: center;
@@ -481,6 +678,26 @@
             
             .step-image-full {
                 grid-column: span 1;
+            }
+
+            .service-options {
+                flex-direction: column;
+            }
+
+            .service-option {
+                padding: 1rem;
+            }
+
+            .service-option-icon {
+                font-size: 1.5rem;
+            }
+
+            .postal-code-section {
+                padding: 1rem;
+            }
+
+            .service-details {
+                padding: 1rem;
             }
         }
     </style>
@@ -578,6 +795,80 @@
                 </p>
                 <div class="step-image-container">
                     <img src="KEY.png" alt="専用ポストの写真" class="step-image">
+                </div>
+            </div>
+        </div>
+
+        <!-- 車両回収サービス選択 -->
+        <div class="service-selection-card">
+            <div class="service-selection-header">
+                <div class="service-selection-icon">
+                    <i class="fas fa-truck-pickup"></i>
+                </div>
+                <div class="service-selection-title">返却時、車両回収サービス（有料）</div>
+            </div>
+            <div class="service-selection-body">
+                <div class="service-options">
+                    <div class="service-option" onclick="selectService('use')">
+                        <div class="service-option-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="service-option-label">利用する</div>
+                    </div>
+                    <div class="service-option selected" onclick="selectService('not-use')">
+                        <div class="service-option-icon">
+                            <i class="fas fa-times-circle"></i>
+                        </div>
+                        <div class="service-option-label">利用しない</div>
+                    </div>
+                </div>
+
+                <!-- 郵便番号入力セクション -->
+                <div id="postalCodeSection" class="postal-code-section">
+                    <div class="postal-code-label">
+                        <i class="fas fa-map-marker-alt"></i>
+                        回収先の郵便番号（7桁）を入力してください
+                    </div>
+                    <div class="postal-code-input-container">
+                        <input 
+                            type="text" 
+                            id="postalCodeInput" 
+                            class="postal-code-input" 
+                            placeholder="例：9860814" 
+                            maxlength="7"
+                            pattern="[0-9]*"
+                            inputmode="numeric"
+                            oninput="validatePostalCode(this.value)"
+                        >
+                    </div>
+                    <div id="postalCodeResult" class="postal-code-result">
+                        <div class="postal-code-result-text">
+                            <i class="fas fa-location-dot" style="color: var(--primary); margin-right: 0.5rem;"></i>
+                            <span id="cityName"></span>
+                        </div>
+                    </div>
+
+                    <!-- サービス詳細 -->
+                    <div class="service-details">
+                        <div class="service-details-title">
+                            <i class="fas fa-info-circle"></i>
+                            サービス内容
+                        </div>
+                        <ul class="service-details-list">
+                            <li>
+                                <i class="fas fa-circle-check"></i>
+                                <span>返却時にお客様のご指定場所まで車両を回収に伺います</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-yen-sign"></i>
+                                <span>料金：回収場所により異なります</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-calendar-days"></i>
+                                <span>対応日時：水曜日を除く平日 10:30～16:30</span>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -706,6 +997,60 @@
     <script>
         function showOilInfo() {
             alert("オイル交換が必要な場合: 3ケ月以上ご利用、または 3000km 以上走行された場合です。");
+        }
+
+        // サービス選択
+        function selectService(type) {
+            const options = document.querySelectorAll('.service-option');
+            const postalCodeSection = document.getElementById('postalCodeSection');
+            
+            options.forEach(option => option.classList.remove('selected'));
+            
+            if (type === 'use') {
+                options[0].classList.add('selected');
+                postalCodeSection.classList.add('active');
+            } else {
+                options[1].classList.add('selected');
+                postalCodeSection.classList.remove('active');
+                // 入力をリセット
+                document.getElementById('postalCodeInput').value = '';
+                document.getElementById('postalCodeResult').classList.remove('active');
+            }
+        }
+
+        // 郵便番号の検証とAPI呼び出し
+        async function validatePostalCode(value) {
+            // 数字のみを許可
+            const numericValue = value.replace(/[^0-9]/g, '');
+            const input = document.getElementById('postalCodeInput');
+            input.value = numericValue;
+
+            const resultDiv = document.getElementById('postalCodeResult');
+            const cityNameSpan = document.getElementById('cityName');
+
+            if (numericValue.length === 7) {
+                try {
+                    // 郵便番号APIを呼び出し
+                    const response = await fetch(`https://zipcloud.ibsnet.co.jp/api/search?zipcode=${numericValue}`);
+                    const data = await response.json();
+
+                    if (data.status === 200 && data.results) {
+                        const result = data.results[0];
+                        const fullAddress = `${result.address1}${result.address2}${result.address3}`;
+                        cityNameSpan.textContent = fullAddress;
+                        resultDiv.classList.add('active');
+                    } else {
+                        cityNameSpan.textContent = '該当する住所が見つかりませんでした';
+                        resultDiv.classList.add('active');
+                    }
+                } catch (error) {
+                    console.error('郵便番号の検索に失敗しました:', error);
+                    cityNameSpan.textContent = '住所の取得に失敗しました';
+                    resultDiv.classList.add('active');
+                }
+            } else {
+                resultDiv.classList.remove('active');
+            }
         }
     </script>
 </body>
