@@ -77,6 +77,40 @@
             opacity: 0.9;
             margin-top: 0.5rem;
             font-weight: 500;
+            margin-bottom: 1.5rem;
+        }
+
+        .header-badges {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .header-badge {
+            background-color: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 0.6rem 1.2rem;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            transition: var(--transition);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-badge:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .header-badge i {
+            font-size: 1.1rem;
         }
 
         /* メインコンテンツ */
@@ -84,6 +118,61 @@
             max-width: 800px;
             margin: 0 auto;
             padding: 2rem 1rem;
+        }
+
+        /* フィーチャーセクション */
+        .feature-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, var(--white), var(--gray-100));
+            border-radius: var(--border-radius);
+            padding: 2rem 1.5rem;
+            text-align: center;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            border: 2px solid transparent;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(0, 104, 233, 0.2);
+            border-color: var(--primary);
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 1rem;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0, 104, 233, 0.3);
+        }
+
+        .feature-icon i {
+            font-size: 2rem;
+            color: var(--white);
+        }
+
+        .feature-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-description {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            line-height: 1.5;
         }
 
         /* ステップカード */
@@ -491,14 +580,41 @@
             line-height: 1.3;
         }
 
-        .popup-highlight {
-            text-align: center;
-            font-size: 2rem;
-            font-weight: 800;
-            color: var(--primary);
+        .popup-badge-container {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
             margin-bottom: 1.5rem;
-            text-shadow: 2px 2px 4px rgba(0, 104, 233, 0.1);
-            animation: bounce 1s ease-in-out infinite;
+        }
+
+        .popup-badge {
+            background: linear-gradient(135deg, rgba(0, 104, 233, 0.1), rgba(0, 81, 181, 0.1));
+            padding: 0.8rem 1.2rem;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            border-left: 4px solid var(--primary);
+            transition: var(--transition);
+            box-shadow: 0 2px 8px rgba(0, 104, 233, 0.1);
+        }
+
+        .popup-badge:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 12px rgba(0, 104, 233, 0.2);
+        }
+
+        .popup-badge i {
+            font-size: 1.5rem;
+            color: var(--primary);
+            flex-shrink: 0;
+        }
+
+        .popup-badge span {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            text-align: left;
         }
 
         .popup-description {
@@ -626,6 +742,49 @@
             .popup-icon i {
                 font-size: 3rem;
             }
+
+            .popup-badge {
+                padding: 0.6rem 1rem;
+            }
+
+            .popup-badge i {
+                font-size: 1.2rem;
+            }
+
+            .popup-badge span {
+                font-size: 0.9rem;
+            }
+
+            .header-badges {
+                gap: 0.5rem;
+            }
+
+            .header-badge {
+                padding: 0.5rem 0.8rem;
+                font-size: 0.75rem;
+            }
+
+            .header-badge i {
+                font-size: 0.9rem;
+            }
+
+            .feature-section {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .feature-card {
+                padding: 1.5rem 1rem;
+            }
+
+            .feature-icon {
+                width: 60px;
+                height: 60px;
+            }
+
+            .feature-icon i {
+                font-size: 1.5rem;
+            }
         }
     </style>
 </head>
@@ -636,9 +795,20 @@
             <div class="popup-icon">
                 <i class="fas fa-clock"></i>
             </div>
-            <h2 class="popup-title">JBレンタカー石巻店の<br>返却方法をご案内</h2>
-            <div class="popup-highlight">
-                <i class="fas fa-check-circle" style="margin-right: 8px;"></i>24時間いつでもOK!
+            <h2 class="popup-title">JBレンタカー石巻店</h2>
+            <div class="popup-badge-container">
+                <div class="popup-badge">
+                    <i class="fas fa-circle-check"></i>
+                    <span>24時間OK</span>
+                </div>
+                <div class="popup-badge">
+                    <i class="fas fa-mobile-screen-button"></i>
+                    <span>スマート返却</span>
+                </div>
+                <div class="popup-badge">
+                    <i class="fas fa-user-clock"></i>
+                    <span>スタッフ不在時にも対応可能</span>
+                </div>
             </div>
             <p class="popup-description">
                 営業時間を気にせず、お好きな時間に返却できます。<br>
@@ -653,11 +823,50 @@
     <!-- ヘッダー -->
     <header class="header">
         <h1>JBレンタカー石巻店</h1>
-        <div class="header-subtitle">営業時間外返却手順</div>
+        <div class="header-subtitle">スマート返却手順</div>
+        <div class="header-badges">
+            <div class="header-badge">
+                <i class="fas fa-clock"></i>
+                <span>24時間OK</span>
+            </div>
+            <div class="header-badge">
+                <i class="fas fa-mobile-screen-button"></i>
+                <span>スマート返却</span>
+            </div>
+            <div class="header-badge">
+                <i class="fas fa-user-clock"></i>
+                <span>スタッフ不在時にも対応可能</span>
+            </div>
+        </div>
     </header>
 
     <!-- メインコンテンツ -->
     <main class="container">
+        <!-- フィーチャーセクション -->
+        <div class="feature-section">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <h3 class="feature-title">24時間OK</h3>
+                <p class="feature-description">営業時間を気にせず、いつでも返却可能です</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-mobile-screen-button"></i>
+                </div>
+                <h3 class="feature-title">スマート返却</h3>
+                <p class="feature-description">簡単3ステップで手続き完了</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-user-clock"></i>
+                </div>
+                <h3 class="feature-title">スタッフ不在時にも対応可能</h3>
+                <p class="feature-description">営業時間外でも安心してご返却いただけます</p>
+            </div>
+        </div>
+
         <!-- ステップ1: ガソリン満タン・オイル交換 -->
         <div class="step-card">
             <div class="step-header">
